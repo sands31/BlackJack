@@ -1,2 +1,2 @@
 # BlackJack
-WCS Project 1
+WCS Project 2
