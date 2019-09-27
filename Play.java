@@ -12,9 +12,9 @@ public class Play {
 		System.out.println("--------------------------------------------------------------------------------------------------");
 		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~WILD-BLACK-JACK~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
 		System.out.println("--------------------------------------------------------------------------------------------------");
-		System.out.println("\nDo you want to play ?\n");
 
-		
+		//Commencer le jeu ?		
+		System.out.println("\nDo you want to play ?\n");		
 		int choice = -1;
 		while (choice != 1 && choice != 2) {
 			System.out.println(Functions.choiceLayout(1));
@@ -22,10 +22,8 @@ public class Play {
 				choice = Integer.parseInt(sc.nextLine());
 			} catch (Exception e) {
 				System.out.println("Please enter 1 or 2.");
-			}
-			
+			}	
 		}
-
 
 		//Début du jeu
 		if (choice == 1) {
@@ -39,7 +37,6 @@ public class Play {
 			int dealerCard_1 = Functions.drawOneCard();
 			int dealerCard_2 = Functions.drawOneCard();
 			int dealerScore = dealerCard_1 + dealerCard_2;
-
 			if (dealerCard_2 == 1 && (dealerScore + 10) >=17 && (dealerScore + 10) <=21) {
 				dealerScore += 10;
 			}
@@ -51,6 +48,7 @@ public class Play {
 
 			//Gestion des as éventuels
 			if (playerCard_1 == 1) {
+				//Choix de la valeur de l'as pour la carte n°1
 				choice = -1;
 				while (choice != 1 && choice != 2) {
 					System.out.println(Functions.choiceLayout(2));
@@ -67,7 +65,9 @@ public class Play {
 					playerScore += 10;
 				}
 				System.out.println(Functions.scoreLayout(2, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
-			} if (playerCard_2 == 1) {
+			}
+			//Choix de la valeur de l'as pour la carte n°2
+			if (playerCard_2 == 1) {
 				choice = -1;
 				while (choice != 1 && choice != 2) {
 					System.out.println(Functions.choiceLayout(2));
@@ -86,7 +86,7 @@ public class Play {
 				System.out.println(Functions.scoreLayout(2, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 			}
 
-			//Tirer d'autres cartes ?
+			//Faire un tour suppmémentaire (en boucle) ?
 			while (choice == 1) {
 				System.out.println("\nDo you want to take another card ?\n");
 				choice = -1;
@@ -99,6 +99,7 @@ public class Play {
 					}					
 				}
 
+				//Tour supplémentaire
 				if (choice == 1) {
 					round++;
 					System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ROUND " + round + "   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
@@ -126,7 +127,7 @@ public class Play {
 						System.out.println(Functions.scoreLayout(3, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 					}
 
-					//Nouvelle carte banque
+					//Nouvelles cartes banque
 					if (playerScore >= 21) {
 						choice = 2;
 					}
@@ -140,10 +141,11 @@ public class Play {
 						}
 					}
 				} 
-			} 
+			}
+
 			//Comparaison des résultats
 			if (playerScore > 21) {
-				System.out.println("YOU LOOSE ! ");
+				System.out.println("YOU LOOSE !");
 			} else if (dealerScore > 21) {
 				System.out.println("YOU WIN !");
 			} else if (playerScore == 21) {
@@ -155,6 +157,8 @@ public class Play {
 			} else {
 				System.out.println("YOU LOOSE !");	
 			}
+			
+			//Affichage score final
 			System.out.println(Functions.scoreLayout(4, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 			System.out.println("\nSee you next time !\n");
 
