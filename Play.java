@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Exception;
 
 public class Play {
 
@@ -16,22 +17,25 @@ public class Play {
 		
 		int choice = -1;
 		while (choice != 1 && choice != 2) {
-			System.out.println("Choose your option :");
-			System.out.println("1. Yes");
-			System.out.println("2. No");
-			choice = sc.nextInt();
+			System.out.println(Functions.choiceLayout(1));
+			try {
+				choice = Integer.parseInt(sc.nextLine());
+			} catch (Exception e) {
+				System.out.println("Please enter 1 or 2.");
+			}
+			
 		}
 
 
 		//Début du jeu
 		if (choice == 1) {
 
-				//Tirage des cartes joueur
-			int playerCard_1 = Functions.drawOneCard();
+			//Tirage des cartes joueur
+			int playerCard_1 =Functions.drawOneCard();
 			int playerCard_2 = Functions.drawOneCard();
 			int playerScore = playerCard_1 + playerCard_2;
 
-				//Tirage des cartes dealer
+			//Tirage des cartes dealer
 			int dealerCard_1 = Functions.drawOneCard();
 			int dealerCard_2 = Functions.drawOneCard();
 			int dealerScore = dealerCard_1 + dealerCard_2;
@@ -40,78 +44,89 @@ public class Play {
 				dealerScore += 10;
 			}
 
-				//Affichage des résultats
+			//Affichage des résultats du 1er tour
 			int round = 1;
-			System.out.println("\nFIRST ROUND\n");
-			System.out.println("Your score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")");
-			System.out.println("Dealer score : "+ dealerScore +" (" + dealerCard_1 + " + " + dealerCard_2 + ")");
+			System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ROUND 1   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+			System.out.println(Functions.scoreLayout(1, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 
+			//Gestion des as éventuels
 			if (playerCard_1 == 1) {
-				System.out.println("\nYou've got an ace ! Do you want to change your ace to  1 or 11 ?");
-				System.out.println("Choose your option :");
-				System.out.println("1. Ace = 1");
-				System.out.println("2. Ace = 11");
-				int ace_choice = sc.nextInt();
-				if (ace_choice == 1) {
+				choice = -1;
+				while (choice != 1 && choice != 2) {
+					System.out.println(Functions.choiceLayout(2));
+					try {
+						choice = Integer.parseInt(sc.nextLine());
+					} catch (Exception e) {
+						System.out.println("Please enter 1 or 2.");
+					}					
+				}
+				if (choice == 1) {
 					playerCard_1 = 1;
 				} else {
 					playerCard_1 = 11;
 					playerScore += 10;
 				}
-				System.out.println("\nActualisation du score\n");
-				System.out.println("Your score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")");
-				System.out.println("Dealer score : " + dealerScore +" (" + dealerCard_1 + " + " + dealerCard_2 + ")");
-			} else if (playerCard_2 == 1) {
-				System.out.println("\nYou've got an ace ! Do you want to change your ace to  1 or 11 ?");
-				System.out.println("Choose your option :");
-				System.out.println("1. Ace = 1");
-				System.out.println("2. Ace = 11");
-				int ace_choice = sc.nextInt();
-				if (ace_choice == 1) {
+				System.out.println(Functions.scoreLayout(2, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
+			} if (playerCard_2 == 1) {
+				choice = -1;
+				while (choice != 1 && choice != 2) {
+					System.out.println(Functions.choiceLayout(2));
+					try {
+						choice = Integer.parseInt(sc.nextLine());
+					} catch (Exception e) {
+						System.out.println("Please enter 1 or 2.");
+					}					
+				}
+				if (choice == 1) {
 					playerCard_2 = 1;
 				} else {
 					playerCard_2 = 11;
 					playerScore += 10;
 				}
-				System.out.println("\nActualisation du score\n");
-				System.out.println("Your score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")");
-				System.out.println("Dealer score : " + dealerScore +" (" + dealerCard_1 + " + " + dealerCard_2 + ")");
+				System.out.println(Functions.scoreLayout(2, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 			}
 
+			//Tirer d'autres cartes ?
 			while (choice == 1) {
-					//Continuer ?
 				System.out.println("\nDo you want to take another card ?\n");
-				System.out.println("Choose your option :");
-				System.out.println("1. Yes");
-				System.out.println("2. No\n");
-				choice = sc.nextInt();
+				choice = -1;
+				while (choice != 1 && choice != 2) {
+					System.out.println(Functions.choiceLayout(1));
+					try {
+						choice = Integer.parseInt(sc.nextLine());
+					} catch (Exception e) {
+						System.out.println("Please enter 1 or 2.");
+					}					
+				}
 
 				if (choice == 1) {
 					round++;
-					System.out.println("\nROUND " + round + "\n");
+					System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ROUND " + round + "   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
 
 					//Nouvelle carte joueur
 					int playerCard_3 = Functions.drawOneCard();
 					playerScore += playerCard_3;
 
 					if (playerCard_3 == 1) {
-						System.out.println("\nYou've got an ace ! Do you want to change your ace to  1 or 11 ?");
-						System.out.println("Choose your option :");
-						System.out.println("1. Ace = 1");
-						System.out.println("2. Ace = 11");
-						int ace_choice = sc.nextInt();
-						if (ace_choice == 1) {
+						choice = -1;
+						while (choice != 1 && choice != 2) {
+							System.out.println(Functions.choiceLayout(2));
+							try {
+								choice = Integer.parseInt(sc.nextLine());
+							} catch (Exception e) {
+								System.out.println("Please enter 1 or 2.");
+							}					
+						}
+						if (choice == 1) {
 							playerCard_3 = 1;
 						} else {
 							playerCard_3 = 11;
 							playerScore += 10;
 						}
-						System.out.println("\nActualisation du score\n");
-						System.out.println("Your score : " + playerScore);
-						System.out.println("Dealer score : " + dealerScore);
+						System.out.println(Functions.scoreLayout(3, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 					}
 
-					//Nouvelle carte banque
+					//Nouvelle carte banque(todo si plus de 21)
 					int dealerCard_3;
 					while (dealerScore <= 16) {
 						dealerCard_3 = Functions.drawOneCard();
@@ -119,12 +134,8 @@ public class Play {
 
 						if (dealerScore >=21) {
 							choice = 2;
-							break;
 						}
 					}
-
-					System.out.println("Your score : " + playerScore);
-					System.out.println("Dealer score : " + dealerScore);
 
 					if (playerScore >= 21) {
 						choice = 2;
@@ -133,7 +144,7 @@ public class Play {
 			} 
 			//Comparaison des résultats
 			if (playerScore > 21) {
-				System.out.println("YOU LOOSE !");
+				System.out.println("YOU LOOSE ! ");
 			} else if (dealerScore > 21) {
 				System.out.println("YOU WIN !");
 			} else if (playerScore == 21) {
@@ -145,12 +156,14 @@ public class Play {
 			} else {
 				System.out.println("YOU LOOSE !");	
 			}
-			System.out.println("\nSee you next time !");
+			System.out.println(Functions.scoreLayout(4, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
+			System.out.println("\nSee you next time !\n");
 
-		//Fin du jeu (Intro)
-		} else {
-			System.out.println("\nBye !");		
+		//Fin du jeu
 		}
+		System.out.println("--------------------------------------------------------------------------------------------------");
+		System.out.println("|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~    BYE !    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|");
+		System.out.println("--------------------------------------------------------------------------------------------------");
 		System.exit(0);
 	}
 
