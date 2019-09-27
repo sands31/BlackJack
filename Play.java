@@ -41,13 +41,16 @@ public class Play {
 			dealerGame[2] = Functions.drawOneCard();
 			dealerGame[0] = dealerGame[1] + dealerGame[2];
 
+			if (dealerGame[1] == 1 && (dealerGame[0] + 10) >=17 && (dealerGame[0] + 10) <=21) {
+				dealerGame[0] += 10;
+			}
 			if (dealerGame[2] == 1 && (dealerGame[0] + 10) >=17 && (dealerGame[0] + 10) <=21) {
 				dealerGame[0] += 10;
 			}
 
 			//Affichage des résultats du 1er tour
 			int round = 1;
-			System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ROUND 1   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+			System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   ROUND " + round + "   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
 			System.out.println(Functions.scoreLayout(1, playerGame[0], playerGame[1], playerGame[2], dealerGame[0], dealerGame[1]));
 
 			//Gestion des as éventuels
@@ -128,7 +131,7 @@ public class Play {
 						}
 					}
 
-					if (playerGame[0] >= 21 || playerGame[0] > dealerGame[0]) {
+					if (playerGame[0] >= 21) {
 						choice = 2;
 					}
 					
