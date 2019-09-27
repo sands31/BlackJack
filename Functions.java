@@ -15,7 +15,7 @@ public class Functions {
 			return "\nYou've got an ace ! Do you want to change your ace to  1 or 11 ?\nChoose your number option : \n1. Ace = 1\n2. Ace = 11\n";
 	}
 
-	public static String scoreLayout(int scoreLayoutType, int playerScore, int playerCard_1, int playerCard_2, int dealerScore, int dealerCard_1) {
+	public static String scoreLayout(int scoreType, int playerScore, int playerCard_1, int playerCard_2, int dealerScore, int dealerCard_1) {
 		if (scoreType == 1)
 			return "\nYour score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")\nDealer score : ? (" + dealerCard_1 + " + ?)";
 		else if (scoreType == 2)
