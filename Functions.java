@@ -19,10 +19,10 @@ public class Functions {
 		if (scoreType == 1)
 			return "\nYour score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")\nDealer score : ? (" + dealerCard_1 + " + ?)";
 		else if (scoreType == 2)
-			return "\nScore update\n\nYour score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")\nDealer score : ? (" + dealerCard_1 + " + ?)";
+			return "\n*** Score update ***\n\nYour score : " + playerScore + " (" + playerCard_1 + " + " + playerCard_2 + ")\nDealer score : ? (" + dealerCard_1 + " + ?)";
 		else if (scoreType == 3)
-			return "\nScore update\nYour score : " + playerScore + "\n" + "Dealer score : " + dealerScore;
+			return "\n*** Score update ***\nYour score : " + playerScore + "\n" + "Dealer score : " + dealerScore;
 		else
-			return "\nYour score : " + playerScore + "\n" + "Dealer score : " + dealerScore;
+			return "Your score : " + playerScore + "\n" + "Dealer score : " + dealerScore;
 	}
 }
