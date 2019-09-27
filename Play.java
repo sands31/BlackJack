@@ -119,25 +119,26 @@ public class Play {
 					}
 
 					//Nouvelles cartes banque
-					if (playerGame[0] >= 21) {
-						choice = 2;
-					} else {
-						while (dealerGame[0] <= 16) {
-							dealerGame[3] = Functions.drawOneCard();
-							dealerGame[0] += dealerGame[3];
+					while (dealerGame[0] <= 16) {
+						dealerGame[3] = Functions.drawOneCard();
+						dealerGame[0] += dealerGame[3];
 
-							if (dealerGame[0] >=21) {
-								choice = 2;
-							}
+						if (dealerGame[0] >=21) {
+							choice = 2;
 						}
 					}
+
+					if (playerGame[0] >= 21 || playerGame[0] > dealerGame[0]) {
+						choice = 2;
+					}
+					
 					//Affichage score final
 					System.out.println(Functions.scoreLayout(4, playerGame[0], playerGame[1], playerGame[2], dealerGame[0], dealerGame[1]));
 				} 
 			}
 
 			//Comparaison des résultats
-			System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   FINAL SCORE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
+			System.out.println("\n%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   FINAL SCORE   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%\n");
 			if (playerGame[0]> 21) {
 				System.out.println("YOU LOOSE ! You've reached 21 first...\n");
 			} else if (dealerGame[0] > 21) {
