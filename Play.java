@@ -126,7 +126,10 @@ public class Play {
 						System.out.println(Functions.scoreLayout(3, playerScore, playerCard_1, playerCard_2, dealerScore, dealerCard_1));
 					}
 
-					//Nouvelle carte banque(todo si plus de 21)
+					//Nouvelle carte banque
+					if (playerScore >= 21) {
+						choice = 2;
+					}
 					int dealerCard_3;
 					while (dealerScore <= 16) {
 						dealerCard_3 = Functions.drawOneCard();
@@ -135,10 +138,6 @@ public class Play {
 						if (dealerScore >=21) {
 							choice = 2;
 						}
-					}
-
-					if (playerScore >= 21) {
-						choice = 2;
 					}
 				} 
 			} 
